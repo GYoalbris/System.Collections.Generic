@@ -1,0 +1,42 @@
+using System;
+using System.Collections.Generic;
+
+class SwimmingCompetition
+{
+    public string EventName { get; set; }
+    public List<double> LapTimes { get; set; }
+
+    public SwimmingCompetition(string eventName)
+    {
+        EventName = eventName;
+        LapTimes = new List<double>();
+    }
+
+    public void RecordLapTime(double time)
+    {
+        LapTimes.Add(time);
+    }
+
+    public double CalculateAverageTime()
+    {
+        double sum = 0;
+        foreach (var time in LapTimes)
+        {
+            sum += time;
+        }
+        return sum / LapTimes.Count;
+    }
+}
+
+class Program
+{
+    static void Main()
+    {
+        var competition = new SwimmingCompetition("100 метров вольным стилем");
+        competition.RecordLapTime(50.5);
+        competition.RecordLapTime(49.9);
+        competition.RecordLapTime(50.1);
+
+        Console.WriteLine($"Среднее время: {competition.CalculateAverageTime()} секунд");
+    }
+}
